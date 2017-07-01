@@ -1,0 +1,438 @@
+➜  brianhouse git:(master) ✗ ruby euclidean_rhythm_test.rb
+Loaded suite euclidean_rhythm_test
+Started
+F
+===========================================================================================================================================================================================================
+Failure: test_11_24(TestBjorklund)
+euclidean_rhythm_test.rb:205:in `test_11_24'
+     202:                    false, true, false, true, false, false, true, false,
+     203:                    true, false, true, false, true, false, true, false]
+     204:        actual = EuclideanRhythm.euclidean_rhythm(11, 24)
+  => 205:        assert_equal expected, actual
+     206:     end
+     207:
+     208:     # E(13,24) = [x . x x . x . x
+<[true,
+ false,
+ false,
+ true,
+ false,
+ true,
+ false,
+ true,
+ false,
+ true,
+ false,
+ true,
+ false,
+ false,
+ true,
+ false,
+ true,
+ false,
+ true,
+ false,
+ true,
+ false,
+ true,
+ false]> expected but was
+<[true,
+ false,
+ true,
+ false,
+ true,
+ false,
+ true,
+ false,
+ true,
+ false,
+ false,
+ true,
+ false,
+ true,
+ false,
+ true,
+ false,
+ true,
+ false,
+ true,
+ false,
+ false,
+ true,
+ false]>
+
+diff:
+  [true,
+-  false,
+-  false,
+-  true,
+   false,
+   true,
+   false,
+   true,
+   false,
+   true,
+   false,
+   true,
+   false,
+   false,
+   true,
+   false,
+   true,
+   false,
+   true,
+   false,
+   true,
+   false,
+   true,
++  false,
++  false,
++  true,
+   false]
+===========================================================================================================================================================================================================
+F
+===========================================================================================================================================================================================================
+Failure: test_13_24(TestBjorklund)
+euclidean_rhythm_test.rb:216:in `test_13_24'
+     213:                    false, true, false, true, false, true, true, false,
+     214:                    true, false, true, false, true, false, true, false]
+     215:        actual = EuclideanRhythm.euclidean_rhythm(13, 24)
+  => 216:        assert_equal expected, actual
+     217:     end
+     218: end
+<[true,
+ false,
+ true,
+ true,
+ false,
+ true,
+ false,
+ true,
+ false,
+ true,
+ false,
+ true,
+ false,
+ true,
+ true,
+ false,
+ true,
+ false,
+ true,
+ false,
+ true,
+ false,
+ true,
+ false]> expected but was
+<[true,
+ false,
+ true,
+ false,
+ true,
+ false,
+ true,
+ false,
+ true,
+ false,
+ true,
+ true,
+ false,
+ true,
+ false,
+ true,
+ false,
+ true,
+ false,
+ true,
+ false,
+ true,
+ true,
+ false]>
+
+diff:
+  [true,
+-  false,
+-  true,
+-  true,
+   false,
+   true,
+   false,
+   true,
+   false,
+   true,
+   false,
+   true,
+   false,
+   true,
+   true,
+   false,
+   true,
+   false,
+   true,
+   false,
+   true,
+   false,
+   true,
++  false,
++  true,
++  true,
+   false]
+===========================================================================================================================================================================================================
+...F
+===========================================================================================================================================================================================================
+Failure: test_2_3(TestBjorklund)
+euclidean_rhythm_test.rb:50:in `test_2_3'
+     47:     def test_2_3
+     48:         expected = [true, false, true]
+     49:         actual = EuclideanRhythm.euclidean_rhythm(2, 3)
+  => 50:         assert_equal expected, actual
+     51:     end
+     52:
+     53:      # E(2,5)=[x . x . .]
+<[true, false, true]> expected but was
+<[true, true, false]>
+
+diff:
+? [true, true, false, true]
+===========================================================================================================================================================================================================
+.F
+===========================================================================================================================================================================================================
+Failure: test_3_4(TestBjorklund)
+euclidean_rhythm_test.rb:67:in `test_3_4'
+     64:     def test_3_4
+     65:         expected = [true, false, true, true] # E(3,4)=[x . x x]
+     66:         actual = EuclideanRhythm.euclidean_rhythm(3, 4)
+  => 67:         assert_equal expected, actual
+     68:     end
+     69:
+     70:     # E(3,5)=[x . x . x]
+<[true, false, true, true]> expected but was
+<[true, true, true, false]>
+
+diff:
+? [true, true, true, false, true, true]
+===========================================================================================================================================================================================================
+........F
+===========================================================================================================================================================================================================
+Failure: test_5_12(TestBjorklund)
+euclidean_rhythm_test.rb:155:in `test_5_12'
+     152:     def test_5_12
+     153:         expected = [true, false, false, true, false, true, false, false, true, false, true, false]
+     154:         actual = EuclideanRhythm.euclidean_rhythm(5, 12)
+  => 155:         assert_equal expected, actual
+     156:     end
+     157:
+     158:     # E(5,16) = [x . . x . . x . . x . . x . . . .]
+<[true, false, false, true, false, true, false, false, true, false, true, false]> expected but was
+<[true, false, true, false, false, true, false, true, false, false, true, false]>
+
+diff:
+? [true, false, true, false, true, false, true, false, true, false, true, false, true, false]
+===========================================================================================================================================================================================================
+.F
+===========================================================================================================================================================================================================
+Failure: test_5_6(TestBjorklund)
+euclidean_rhythm_test.rb:120:in `test_5_6'
+     117:     def test_5_6
+     118:         expected = [true, false, true, true, true, true]
+     119:         actual = EuclideanRhythm.euclidean_rhythm(5, 6)
+  => 120:         assert_equal expected, actual
+     121:     end
+     122:
+     123:     # E(5,7)=[x . x x . x x]
+<[true, false, true, true, true, true]> expected but was
+<[true, true, true, true, true, false]>
+
+diff:
+? [true, true, true, true, true, false, true, true, true, true]
+===========================================================================================================================================================================================================
+F
+===========================================================================================================================================================================================================
+Failure: test_5_7(TestBjorklund)
+euclidean_rhythm_test.rb:127:in `test_5_7'
+     124:     def test_5_7
+     125:         expected = [true, false, true, true, false, true, true]
+     126:         actual = EuclideanRhythm.euclidean_rhythm(5, 7)
+  => 127:         assert_equal expected, actual
+     128:     end
+     129:
+     130:     # E(5,8)=[x . x x . x x .]
+<[true, false, true, true, false, true, true]> expected but was
+<[true, true, false, true, true, false, true]>
+
+diff:
+? [true, true, false, true, true, false, true, true]
+===========================================================================================================================================================================================================
+..F
+===========================================================================================================================================================================================================
+Failure: test_7_12(TestBjorklund)
+euclidean_rhythm_test.rb:176:in `test_7_12'
+     173:     def test_7_12
+     174:         expected = [true, false, true, true, false, true, false, true, true, false, true, false]
+     175:         actual = EuclideanRhythm.euclidean_rhythm(7, 12)
+  => 176:         assert_equal expected, actual
+     177:     end
+     178:
+     179:     # E(7,16) = [x . . x . x . x
+<[true, false, true, true, false, true, false, true, true, false, true, false]> expected but was
+<[true, false, true, false, true, true, false, true, false, true, true, false]>
+
+diff:
+? [true, false, true, true, false, true, true, false, true, true, false, true, true, false]
+===========================================================================================================================================================================================================
+F
+===========================================================================================================================================================================================================
+Failure: test_7_16(TestBjorklund)
+euclidean_rhythm_test.rb:185:in `test_7_16'
+     182:         expected = [true, false, false, true, false, true, false, true,
+     183:                     false, false, true, false, true, false, true, false]
+     184:         actual = EuclideanRhythm.euclidean_rhythm(7, 16)
+  => 185:         assert_equal expected, actual
+     186:     end
+     187:
+     188:     # E(9,16) = [x . x x . x . x
+<[true,
+ false,
+ false,
+ true,
+ false,
+ true,
+ false,
+ true,
+ false,
+ false,
+ true,
+ false,
+ true,
+ false,
+ true,
+ false]> expected but was
+<[true,
+ false,
+ true,
+ false,
+ true,
+ false,
+ false,
+ true,
+ false,
+ true,
+ false,
+ true,
+ false,
+ false,
+ true,
+ false]>
+
+diff:
+  [true,
+-  false,
+-  false,
+-  true,
+   false,
+   true,
+   false,
+   true,
+   false,
+   false,
+   true,
+   false,
+   true,
+   false,
+   true,
++  false,
++  false,
++  true,
+   false]
+===========================================================================================================================================================================================================
+F
+===========================================================================================================================================================================================================
+Failure: test_7_8(TestBjorklund)
+euclidean_rhythm_test.rb:169:in `test_7_8'
+     166:     def test_7_8
+     167:         expected = [true, false, true, true, true, true, true, true]
+     168:         actual = EuclideanRhythm.euclidean_rhythm(7, 8)
+  => 169:         assert_equal expected, actual
+     170:     end
+     171:
+     172:     # E(7,12) = [x . x x . x . x x . x .]
+<[true, false, true, true, true, true, true, true]> expected but was
+<[true, true, true, true, true, true, true, false]>
+
+diff:
+? [true, true, true, true, true, true, true, false, true, true, true, true, true, true]
+===========================================================================================================================================================================================================
+F
+===========================================================================================================================================================================================================
+Failure: test_9_16(TestBjorklund)
+euclidean_rhythm_test.rb:194:in `test_9_16'
+     191:        expected = [true, false, true, true, false, true, false, true,
+     192:                    false, true, true, false, true, false, true, false]
+     193:        actual = EuclideanRhythm.euclidean_rhythm(9, 16)
+  => 194:        assert_equal expected, actual
+     195:     end
+     196:
+     197:     # E(11,24) = [x . . x . x . x
+<[true,
+ false,
+ true,
+ true,
+ false,
+ true,
+ false,
+ true,
+ false,
+ true,
+ true,
+ false,
+ true,
+ false,
+ true,
+ false]> expected but was
+<[true,
+ false,
+ true,
+ false,
+ true,
+ false,
+ true,
+ true,
+ false,
+ true,
+ false,
+ true,
+ false,
+ true,
+ true,
+ false]>
+
+diff:
+  [true,
+-  false,
+-  true,
+-  true,
+   false,
+   true,
+   false,
+   true,
+   false,
+   true,
+   true,
+   false,
+   true,
+   false,
+   true,
++  false,
++  true,
++  true,
+   false]
+===========================================================================================================================================================================================================
+
+
+Finished in 0.114664 seconds.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+26 tests, 26 assertions, 11 failures, 0 errors, 0 pendings, 0 omissions, 0 notifications
+57.6923% passed
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+226.75 tests/s, 226.75 assertions/s
+➜  brianhouse git:(master) ✗

@@ -1,0 +1,5 @@
+startshape p1
+background {b -1}
+/*background {sat .5 b 1}*/
+rule p0 {CIRCLE{b .5} p0{x -.0075 s .99}}
+rule p1 {4 * {r 13 x .15 y -.15 b .5 z 1} p0{}}
