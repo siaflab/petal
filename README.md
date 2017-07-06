@@ -3,7 +3,7 @@
 
 ## About
 
-_**Petal**_ is a small language on [Sonic Pi](http://sonic-pi.net/) and has a similar syntax to [TidalCycles](https://tidalcycles.org).
+_**Petal**_ is a small language on [Sonic Pi](http://sonic-pi.net/) with similar syntax to [TidalCycles](https://tidalcycles.org).
 
 ## Requirements
 
