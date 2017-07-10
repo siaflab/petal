@@ -246,3 +246,11 @@ end
 def solo(loop_name, sound = nil, **option_hash)
   dirt_solo loop_name, sound, option_hash
 end
+
+def dirt_samples(name)
+  path = File.expand_path(@@dirt_dir + '/' + name) + '/'
+  entries = Dir.entries(path)
+  entries -= ['.']
+  entries -= ['..']
+  entries.map { |e| path + e }
+end
