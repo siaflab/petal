@@ -252,6 +252,7 @@ def dirt_names()
   entries = Dir.entries(path)
   entries -= ['.']
   entries -= ['..']
+  entries -= ['Dirt-Samples.quark']
   # entries.map { |e| path + e }
 end
 
