@@ -113,6 +113,22 @@ class TestParserModule < Test::Unit::TestCase
     assert_equal expected, actual
   end
 
+  def test_parse_option_sound_bd_n_0_n_left
+    s0 = PetalLang::Sound.new('bd', 0, 1)
+    s0.index = 0
+    expected = PetalLang::Cycle.new(120, [s0])
+    actual = PetalLang::Parser.parse(120, n: '0', sound: 'bd')
+    assert_equal expected, actual
+  end
+
+  def test_parse_option_sound_bd_n_0_n_right
+    s0 = PetalLang::Sound.new('bd', 0, 1)
+    s0.index = 0
+    expected = PetalLang::Cycle.new(120, [s0])
+    actual = PetalLang::Parser.parse(120, sound: 'bd', n: '0')
+    assert_equal expected, actual
+  end
+
   def test_parse_option_sound_bd_n_x2_n_left
     s0 = PetalLang::Sound.new('bd', 0, 1)
     s0.index = 5

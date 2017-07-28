@@ -71,7 +71,7 @@ module PetalLang
       @value == other.value && @divisor == other.divisor
     end
 
-    REST = Option.new('0', 1)
+    REST = Option.new('~', 1)
   end
 
   class Rand
