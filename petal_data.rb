@@ -49,8 +49,8 @@ module PetalLang
       return false if other.nil?
       return false unless other.is_a?(Sound)
       @name == other.name && @index == other.index &&
-        @divisor == other.divisor && @amp == other.amp &&
-        @pan == other.pan && @rate == other.rate
+        @divisor.to_f == other.divisor.to_f && @amp.to_f == other.amp.to_f &&
+        @pan.to_f == other.pan.to_f && @rate.to_f == other.rate.to_f
     end
 
     REST = Sound.new('~', 0, 1)
@@ -68,7 +68,7 @@ module PetalLang
     def ==(other)
       return false if other.nil?
       return false unless other.is_a?(Option)
-      @value == other.value && @divisor == other.divisor
+      @value == other.value && @divisor.to_f == other.divisor.to_f
     end
 
     REST = Option.new('~', 1)

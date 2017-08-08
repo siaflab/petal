@@ -62,7 +62,7 @@ module PetalLang
     def dfs_merge_with_speed_array(sound_array, speed_array)
       dfs_each_with_index_map(sound_array) do |sound, index_array|
         speed = find_element(index_array, speed_array)
-        sound.rate = speed.value unless speed == Option::REST
+        sound.rate = sound.rate.to_f * speed.value.to_f unless speed == Option::REST
         sound
       end
     end
@@ -113,7 +113,7 @@ module PetalLang
         else
           s = find_element(index_array, sound_array)
           sound = Sound.new(s.name, s.index, speed.divisor)
-          sound.rate = speed.value
+          sound.rate = sound.rate.to_f * speed.value.to_f
         end
         sound
       end
