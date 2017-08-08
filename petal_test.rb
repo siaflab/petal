@@ -195,14 +195,35 @@ class TestParserModule < Test::Unit::TestCase
     assert_equal expected, actual
   end
 
-  #speed: "1(11,16,8)", s: 'hh'
+  def test_parse_option_sound_bd_density
+    s = PetalLang::Sound.new('bd', 0, 1)
+    expected = PetalLang::Cycle.new(240, [s])
+    actual = PetalLang::Parser.parse(120, sound: 'bd', density: 2)
+    assert_equal expected, actual
+  end
+
+  def test_parse_option_sound_bd_fast
+    s = PetalLang::Sound.new('bd', 0, 1)
+    expected = PetalLang::Cycle.new(240, [s])
+    actual = PetalLang::Parser.parse(120, sound: 'bd', fast: 2)
+    assert_equal expected, actual
+  end
+
+  def test_parse_option_sound_bd_slow
+    s = PetalLang::Sound.new('bd', 0, 1)
+    expected = PetalLang::Cycle.new(60, [s])
+    actual = PetalLang::Parser.parse(120, sound: 'bd', slow: 2)
+    assert_equal expected, actual
+  end
+
+  # speed: "1(11,16,8)", s: 'hh'
   def test_parse_option_speed_e12_hh
     s = PetalLang::Sound.new('hh', 0, 1)
-    s.rate = "1"
+    s.rate = '1'
     r = PetalLang::Sound::REST
-    # TODO [[]]にならないよう、PetalLang::Parser.parseを変更する
+    # TODO: [[]]にならないよう、PetalLang::Parser.parseを変更する
     expected = PetalLang::Cycle.new(120, [[s, r, s, s, r, s, r, s]])
-    actual = PetalLang::Parser.parse(120, speed: "1(5,8,2)", s: 'hh')
+    actual = PetalLang::Parser.parse(120, speed: '1(5,8,2)', s: 'hh')
     # expected = PetalLang::Cycle.new(120, [[s]])
     # actual = PetalLang::Parser.parse(120, speed: "1(1,1)", s: 'hh')
     assert_equal expected, actual

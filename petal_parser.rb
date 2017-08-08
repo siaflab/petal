@@ -288,7 +288,7 @@ module PetalLang
         end
       end
 
-      density = option_hash[:density]
+      density = option_hash[:fast] || option_hash[:density]
       bpm *= density.to_f unless density.nil?
       slow = option_hash[:slow]
       bpm /= slow.to_f unless slow.nil?
