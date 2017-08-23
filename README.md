@@ -25,6 +25,47 @@ load "~/petal/petal.rb"   # the path you extract the file
 d1 'bd'
 ```
 
+## Tutorial
+
+[Petal: the guilde](https://github.com/siaflab/petal/blob/master/patterns.md)
+
 ## Demo
 
-https://vimeo.com/223727860
+https://twitter.com/kn1kn1/status/881498461635461121
+
+## Examples
+
+Here are some example code from our live performance of [space-moere](http://space-moere.org/).
+
+space-moere #0 - Balloon
+
+```ruby
+load "~/petal/petal.rb"
+d1"outdoor:2/2",rate:"rrand -1 -0.125"
+```
+
+space-moere #1 - Landing
+
+```ruby
+load "~/petal/petal.rb"
+cps 0.55
+d1":bd_haus*4"
+d2"sid(11,16,2)",n:'irand 1 11'
+```
+
+space-moere #2 - Clouds
+
+```ruby
+load "~/petal/petal.rb"
+cps 0.55
+d1":bd_klub(12,32) :bd_klub(12,32)",rate:"1.5 1",slow:8
+d2"ul(11,16,3)",n:'irand 9'
+```
+
+space-moere #3 - Outer
+
+```ruby
+load "~/petal/petal.rb"
+cps 0.55
+d1"d(7,8,1)",n:'irand 3'
+```
