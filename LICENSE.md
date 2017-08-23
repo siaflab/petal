@@ -24,6 +24,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
+## Tutorial
+(contents of patterns.md)
+
+https://github.com/tidalcycles/tidalcycles.github.io
+
 ## Dirt-Samples
 (contents of Dirt-Samples/)
 
@@ -31,8 +36,7 @@ https://github.com/tidalcycles/Dirt-Samples
 
 ## Bundled Software
 
-The following is a list of the software included in Petal with their
-relevant licenses:
+The following is a list of the software included in Petal with their relevant licenses:
 
 ### [EuclideanRhythm](https://github.com/kn1kn1/EuclideanRhythm)
 (contents of EuclideanRhythm/)
