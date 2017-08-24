@@ -155,7 +155,7 @@ Use the `*` symbol to make a pattern, or part of a pattern, repeat as many times
 d1 $ sound "bd*2"
 ```
 
-    This is the same as doing d1 "bd bd"
+This is the same as doing `d1 "bd bd"`.
 
 The code above uses `*2` to make a sample play twice.
 
@@ -173,7 +173,124 @@ Using different numbers works as you’d expect:
 d1 "bd*3" # plays the bd sample three times each cycle
 ```
 
-
 ```ruby
 d1 "bd/3" # plays the bd samples only once each third cycle
 ```
+
+## Using Options
+
+### Options
+
+You use an option by adding the ruby hash option after your sound pattern:
+
+```ruby
+d1 "bd*4", amp: 1.2
+```
+
+The above code changes volume by adding `amp: 1.2`.
+
+#### Options are patterns too
+
+You may notice that the values of effects are specified in double quotes. This means that you can pattern the option values too:
+
+```ruby
+d1 "bd*4", amp: "1 0.8 0.5 0.7"
+```
+
+The above `amp` option changes how loud the sample is, good for patterns of emphasis as above. Option patterns follow all the same grouping rules as sound patterns:
+
+```ruby
+d1 "bd*4 sn*4", amp: "0.6 [1 0.8 0.5 0.7]]"
+```
+
+#### Option pattern order (Left-most option pattern)
+
+You can specify the option before the sound pattern:
+
+```ruby
+d1 amp: "1 0.8 0.5 0.7", sound: "bd"
+```
+
+The order that you put things matters; the structure of the pattern is given by the pattern on the left-most option. In this case, only one `bd` sound is given, but you hear four, because the structure comes from the `amp` pattern on the left-most.
+
+### Option Specifications
+
+Petal has a number of options that you can apply to sounds. Here is a quick list of the options you can use in Petal:
+
+* `gain`/`amp` (changes volume, values from 0 to 1)
+* `pan` (pans sound left and right, values from -1 to 1)
+* `speed`/`rate` (changes playback speed of a sample)
+* `slow`,`fast`/`density` (changes playback speed of a pattern)
+* `stretch` (fits a sample to the cycle duration)
+
+#### gain/amp
+
+You can change the volume of a sample by using the `gain` or `amp` option.
+
+```ruby
+d1 "bd*4", amp: 1.2
+```
+
+You can specify a number as a valume of `gain`/`amp` option.
+
+#### speed/rate
+
+You can change the playback speed of a 'sample' by using the `speed` or `rate` option. You can use `speed`/`rate` to change pitches, to create a weird effect, or to match the length of a sample to a specific period of the cycle time (but see the `stretch` option for an easy way of doing the latter).
+
+You can set a sample’s speed by using the `speed`/`rate` option with a number.
+
+* `speed: "1"` plays a sample at its original speed
+* `speed: "0.5"` plays a sample at half of its original speed
+* `speed: "2"` plays a sample at double its original speed
+
+
+```ruby
+d1 "arpy", speed: "1"
+```
+
+```ruby
+d1 "arpy", speed: "0.5"
+```
+
+```ruby
+d1 "arpy", speed: "2"
+```
+
+Just like other options, you can specify a pattern for speed:
+
+```ruby
+d1 speed: "1 0.5 2 1.5", sound: "arpy"
+```
+
+You can also reverse a sample by specifying negative values:
+
+```ruby
+d1 speed: "-1 -0.5 -2 -1.5", sound: "arpy"
+```
+
+#### slow, fast/density
+
+You can also slow down or speed up the playback of a 'pattern', this makes it a quarter of the speed:
+
+```ruby
+d1 "bd*2 [bd [sn sn*2 sn] sn]", slow: 4
+```
+
+And this four times the speed:
+
+```ruby
+d1 "bd*2 [bd [sn sn*2 sn] sn]", fast: 4
+```
+
+Note that `slow: 0.25` would do exactly the same as `fast: 4`.
+
+#### stretch
+
+You can fit a sample to the cycle duration by using `stretch` option:
+
+```ruby
+d1 :loop_breakbeat, slow: 2, stretch: :b
+```
+
+* `stretch: :b`  This does not keep the pitch constant and is essentially the same as modifying the rate directly.
+* `stretch: :p`  This attempts to keep the pitch constant.
