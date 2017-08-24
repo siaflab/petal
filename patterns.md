@@ -288,7 +288,7 @@ d1 :loop_breakbeat, slow: 2, stretch: :b
 
 ### Randomness
 
-Tidal can produce random patterns of integers and decimals. It can also introduce randomness into patterns by removing random events.
+Petal can produce random patterns of integers and decimals.
 
 #### Random Decimal Patterns
 
