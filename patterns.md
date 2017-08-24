@@ -43,7 +43,7 @@ When you run the code above, you are replacing the previous pattern with another
 
 #### Rests
 
-So far we have produced patterns that keep producing more and more sound. What if you want a rest, or gap of silence, in your pattern? You can use the “tilde” `~`` character to do so:
+So far we have produced patterns that keep producing more and more sound. What if you want a rest, or gap of silence, in your pattern? You can use the “tilde” `~` character to do so:
 
 ```ruby
 d1 "bd bd ~ bd"
@@ -86,8 +86,6 @@ The relationship of these functions can be described as follows:
 cps(1) == bpm(120) == bps(120/60)
 ```
 
-### Silence
-
 #### Silence
 
 At this point you probably want to know how to stop the patterns you started. An empty pattern is defined as silence, so if you want to ‘switch off’ a pattern, you can just set it to that:
@@ -117,9 +115,7 @@ solo :d1, "bd sn"
 
 Please note that you need to specify the connection name as a ruby symbol (from `:d1` to `:d9`).
 
-
-### Patterns Within Patterns
-##### Pattern Groups
+#### Pattern Groups
 
 You can use Tidal’s square brackets syntax in Petal to create a pattern grouping:
 
@@ -144,15 +140,14 @@ You can even nest groups inside groups to create increasingly dense and complex 
 d1 "[bd bd] [bd [sd [sd sd] sd] sd]"
 ```
 
-### Pattern Repetition and Speed
-#### Repetition
+#### Pattern Repetition and Speed
 
 There are two short-hand symbols you can use inside patterns to speed things up or slow things down: `*` and `/`. You could think of these like multiplication and division.
 
 Use the `*` symbol to make a pattern, or part of a pattern, repeat as many times as you’d like:
 
 ```ruby
-d1 $ sound "bd*2"
+d1 "bd*2"
 ```
 
 This is the same as doing `d1 "bd bd"`.
@@ -294,3 +289,84 @@ d1 :loop_breakbeat, slow: 2, stretch: :b
 
 * `stretch: :b`  This does not keep the pitch constant and is essentially the same as modifying the rate directly.
 * `stretch: :p`  This attempts to keep the pitch constant.
+
+
+### Randomness
+
+Tidal can produce random patterns of integers and decimals. It can also introduce randomness into patterns by removing random events.
+
+#### Random Decimal Patterns
+
+You can use the `rand` function to create a random value between 0 and 1. This is useful for effects:
+
+```ruby
+d1 "arpy*4", amp: "rand"
+```
+
+The maximum value that rand give you can be specified, for example the below gives random numbers between 0 and 2:
+
+```ruby
+d1 "arpy*4", amp: "rand 2"
+```
+
+The values that rand give you can be also scaled, for example the below gives random numbers between -1 and 1:
+
+```ruby
+d1 "arpy*4", pan: "rand -1 1"
+```
+
+#### Random Integer Patterns
+
+Use the irand function to create a random integer up to a given maximum. The most common usage of `irand` is to produce a random pattern of sample indices:
+
+```ruby
+d1 "arpy*8", n: "irand 30"
+```
+The code above randomly chooses from 30 samples in the “arpy” folder.
+
+## Euclidean Sequences
+### Bjorklund
+
+If you give two numbers in parenthesis after an element in a pattern, then Petal will distribute the first number of sounds equally across the second number of steps:
+
+```ruby
+d1 "bd(5,8)"
+```
+You can use the parenthesis notation within a single element of a pattern:
+
+```ruby
+d1 "bd(3,8) sn*2"
+```
+
+```ruby
+d1 "bd(3,8) sn(5,8)"
+```
+You can also add a third parameter, which ‘rotates’ the pattern so it starts on a different step:
+
+```ruby
+d1 "bd(5,8,2)"
+```
+
+These types of sequences use “Bjorklund’s algorithm”, which wasn’t made for music but for an application in nuclear physics, which is exciting. More exciting still is that it is very similar in structure to the one of the first known algorithms written in Euclid’s book of elements in 300 BC. You can read more about this in the paper ["The Euclidean Algorithm Generates Traditional Musical Rhythms"](http://cgm.cs.mcgill.ca/~godfried/publications/banff.pdf) by Toussaint. Some examples from this paper are included below, including rotation in some cases.
+
+* (2,5) : A thirteenth century Persian rhythm called Khafif-e-ramal.
+* (3,4) : The archetypal pattern of the Cumbia from Colombia, as well as a Calypso rhythm from Trinidad.
+* (3,5,2) : Another thirteenth century Persian rhythm by the name of Khafif-e-ramal, as well as a Rumanian folk-dance rhythm.
+* (3,7) : A Ruchenitza rhythm used in a Bulgarian folk-dance.
+* (3,8) : The Cuban tresillo pattern.
+* (4,7) : Another Ruchenitza Bulgarian folk-dance rhythm.
+* (4,9) : The Aksak rhythm of Turkey.
+* (4,11) : The metric pattern used by Frank Zappa in his piece titled Outside Now.
+* (5,6) : Yields the York-Samai pattern, a popular Arab rhythm.
+* (5,7) : The Nawakhat pattern, another popular Arab rhythm.
+* (5,8) : The Cuban cinquillo pattern.
+* (5,9) : A popular Arab rhythm called Agsag-Samai.
+* (5,11) : The metric pattern used by Moussorgsky in Pictures at an Exhibition.
+* (5,12) : The Venda clapping pattern of a South African children’s song.
+* (5,16) : The Bossa-Nova rhythm necklace of Brazil.
+* (7,8) : A typical rhythm played on the Bendir (frame drum).
+* (7,12) : A common West African bell pattern.
+* (7,16,14) : A Samba rhythm necklace from Brazil.
+* (9,16) : A rhythm necklace used in the Central African Republic.
+* (11,24,14) : A rhythm necklace of the Aka Pygmies of Central Africa.
+* (13,24,5) : Another rhythm necklace of the Aka Pygmies of the upper Sangha.
