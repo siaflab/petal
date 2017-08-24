@@ -195,7 +195,7 @@ d1 "bd*4", amp: "1 0.8 0.5 0.7"
 The above `amp` option changes how loud the sample is, good for patterns of emphasis as above. Option patterns follow all the same grouping rules as sound patterns:
 
 ```ruby
-d1 "bd*4 sn*4", amp: "0.6 [1 0.8 0.5 0.7]]"
+d1 "bd*4 sn*4", amp: "0.6 [1 0.8 0.5 0.7]"
 ```
 
 #### Option pattern order (Left-most option pattern)
@@ -324,6 +324,12 @@ d1 "arpy*8", n: "irand 30"
 ```
 The code above randomly chooses from 30 samples in the “arpy” folder.
 
+The values that rand give you can be ranged, for example the below gives random integer between 8 and 12:
+
+```ruby
+d1 "arpy(9,16,1)", n: 'irand 8 12'
+```
+
 ## Euclidean Sequences
 ### Bjorklund
 
@@ -341,6 +347,7 @@ d1 "bd(3,8) sn*2"
 ```ruby
 d1 "bd(3,8) sn(5,8)"
 ```
+
 You can also add a third parameter, which ‘rotates’ the pattern so it starts on a different step:
 
 ```ruby
