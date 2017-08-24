@@ -41,7 +41,7 @@ space-moere #0 - Balloon
 
 ```ruby
 load "~/petal/petal.rb"
-d1"outdoor:2/2",rate:"rrand -1 -0.125"
+d1"outdoor:2/2",rate:"rand -1 -0.125"
 ```
 
 space-moere #1 - Landing
