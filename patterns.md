@@ -39,8 +39,6 @@ Putting things in quotes allows you to define a sequence. For example, the follo
 d1 "bd sd:3"
 ```
 
-When you run the code above, you are replacing the previous pattern with another one on-the-fly. Congratulations, you’re live coding.
-
 #### Rests
 
 So far we have produced patterns that keep producing more and more sound. What if you want a rest, or gap of silence, in your pattern? You can use the “tilde” `~` character to do so:
@@ -99,7 +97,6 @@ Or you can stop the loop by just passing empty argument to the function.
 ```ruby
 d1
 ```
-
 
 If you want to set all the connections (from `d1` to `d9`) to be silent at once, there’s a single-word shortcut for that:
 
@@ -238,7 +235,6 @@ You can set a sample’s speed by using the `speed`/`rate` option with a number.
 * `speed: "0.5"` plays a sample at half of its original speed
 * `speed: "2"` plays a sample at double its original speed
 
-
 ```ruby
 d1 "arpy", speed: "1"
 ```
@@ -289,7 +285,6 @@ d1 :loop_breakbeat, slow: 2, stretch: :b
 
 * `stretch: :b`  This does not keep the pitch constant and is essentially the same as modifying the rate directly.
 * `stretch: :p`  This attempts to keep the pitch constant.
-
 
 ### Randomness
 
