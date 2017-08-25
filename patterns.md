@@ -207,7 +207,7 @@ The order that you put things matters; the structure of the pattern is given by 
 
 ### Option Specifications
 
-Petal has a number of options that you can apply to sounds. Here is a quick list of the options you can use in Petal:
+Petal has several options that you can apply to sounds. Here is a quick list of the options you can use in Petal:
 
 * `gain`/`amp` (changes volume, values from 0 to 1)
 * `pan` (pans sound left and right, values from -1 to 1)
