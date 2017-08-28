@@ -45,6 +45,8 @@ module PetalLang
     # @@dirt_dir = '~/Dirt-Samples'
     @@dirt_dir = File.dirname(__FILE__) + '/Dirt-Samples'
 
+    @@loop_numbers = {}
+
     def play_array(arry, dur, loop_index, cycle)
       if !arry || arry.count == 0
         sleep dur.to_f
@@ -135,13 +137,21 @@ module PetalLang
       @@bpm = beat_per_min
     end
 
+    def dirt_stop(loop_name)
+      loop_number = @@loop_numbers[loop_name]
+      unless loop_number.nil?
+        loop_sym = "#{loop_name}_#{loop_number}".intern
+        live_loop loop_sym, sync: :d0 do
+          stop
+        end
+      end
+    end
+
     def dirt_hush
       @@solo = :d0
       for i in 1..9 do
         s = "d#{i}".intern
-        live_loop s do
-          stop
-        end
+        dirt_stop(s)
       end
     end
 
@@ -150,9 +160,7 @@ module PetalLang
       for i in 1..9 do
         s = "d#{i}".intern
         next if s == loop_name
-        live_loop s do
-          stop
-        end
+        dirt_stop(s)
       end
       dirt loop_name, sound, option_hash
     end
@@ -164,6 +172,15 @@ module PetalLang
 
       cycle = Parser.parse(@@bpm, sound, **option_hash)
 
+      loop_number = @@loop_numbers[loop_name]
+      next_number = if !loop_number.nil?
+                      loop_number.to_i ^ 1
+                    else
+                      0
+                    end
+      loop_sym = "#{loop_name}_#{next_number}".intern
+      @@loop_numbers[loop_name] = next_number.to_i
+
       dur = @@seconds_per_cycle
       live_loop :d0 do
         use_bpm @@bpm
@@ -171,12 +188,19 @@ module PetalLang
         @@solo = nil
       end
 
-      live_loop loop_name, sync: :d0 do
+      live_loop loop_sym, sync: :d0 do
         stop if cycle.sound_array.empty?
         loop_index = tick
         puts "loop_index: #{loop_index}"
         use_bpm cycle.bpm
         play_array(cycle.sound_array, dur, loop_index, cycle)
+      end
+
+      unless loop_number.nil?
+        previous_sym = "#{loop_name}_#{loop_number}".intern
+        live_loop previous_sym, sync: :d0 do
+          stop
+        end
       end
     end
   end
@@ -247,7 +271,7 @@ def solo(loop_name, sound = nil, **option_hash)
   dirt_solo loop_name, sound, option_hash
 end
 
-def dirt_names()
+def dirt_names
   path = File.expand_path(@@dirt_dir)
   entries = Dir.entries(path)
   entries -= ['.']
