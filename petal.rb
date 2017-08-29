@@ -37,6 +37,8 @@ require_relative './petal_parser.rb'
 module PetalLang
   module Petal
     extend self
+    include PetalLang::LoopHolder
+
     @@seconds_per_cycle = 1.0
     @@bpm = 60
     @@solo = nil
@@ -44,8 +46,6 @@ module PetalLang
     # @@dirt_dir = '~/Library/Application Support/SuperCollider/downloaded-quarks/Dirt-Samples'
     # @@dirt_dir = '~/Dirt-Samples'
     @@dirt_dir = File.dirname(__FILE__) + '/Dirt-Samples'
-
-    @@loop_numbers = {}
 
     def play_array(arry, dur, loop_index, cycle)
       if !arry || arry.count == 0
@@ -138,10 +138,10 @@ module PetalLang
     end
 
     def dirt_stop(loop_name)
-      loop_number = @@loop_numbers[loop_name]
-      unless loop_number.nil?
-        loop_sym = "#{loop_name}_#{loop_number}".intern
-        live_loop loop_sym, sync: :d0 do
+      sub_number = @@loop_sub_numbers[loop_name]
+      unless sub_number.nil?
+        loop_symbol = "#{loop_name}_#{sub_number}".intern
+        live_loop loop_symbol, sync: :d0 do
           stop
         end
       end
@@ -172,14 +172,14 @@ module PetalLang
 
       cycle = Parser.parse(@@bpm, sound, **option_hash)
 
-      loop_number = @@loop_numbers[loop_name]
-      next_number = if !loop_number.nil?
-                      loop_number.to_i ^ 1
+      previous_number = @@loop_sub_numbers[loop_name]
+      next_number = if !previous_number.nil?
+                      previous_number.to_i ^ 1
                     else
                       0
                     end
-      loop_sym = "#{loop_name}_#{next_number}".intern
-      @@loop_numbers[loop_name] = next_number.to_i
+      next_loop = "#{loop_name}_#{next_number}".intern
+      @@loop_sub_numbers[loop_name] = next_number.to_i
 
       dur = @@seconds_per_cycle
       live_loop :d0 do
@@ -188,7 +188,7 @@ module PetalLang
         @@solo = nil
       end
 
-      live_loop loop_sym, sync: :d0 do
+      live_loop next_loop, sync: :d0 do
         stop if cycle.sound_array.empty?
         loop_index = tick
         puts "loop_index: #{loop_index}"
@@ -196,9 +196,9 @@ module PetalLang
         play_array(cycle.sound_array, dur, loop_index, cycle)
       end
 
-      unless loop_number.nil?
-        previous_sym = "#{loop_name}_#{loop_number}".intern
-        live_loop previous_sym, sync: :d0 do
+      unless previous_number.nil?
+        previous_loop = "#{loop_name}_#{previous_number}".intern
+        live_loop previous_loop, sync: :d0 do
           stop
         end
       end

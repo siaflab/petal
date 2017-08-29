@@ -1,4 +1,11 @@
+require 'singleton'
+
 module PetalLang
+  module LoopHolder
+    extend self
+    @@loop_sub_numbers = {}
+  end
+
   class Cycle
     attr_reader :bpm
     attr_reader :sound_array
