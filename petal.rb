@@ -47,7 +47,7 @@ module PetalLang
     # @@dirt_dir = '~/Dirt-Samples'
     @@dirt_dir = File.dirname(__FILE__) + '/Dirt-Samples'
 
-    @@switch_live_loop = true
+    @@use_fx_with_petal = true
 
     def play_array(arry, dur, loop_index, cycle)
       if !arry || arry.count == 0
@@ -175,7 +175,7 @@ module PetalLang
       cycle = Parser.parse(@@bpm, sound, **option_hash)
 
       previous_number = @@loop_sub_numbers[loop_name]
-      next_number = if !previous_number.nil? && @@switch_live_loop
+      next_number = if !previous_number.nil? && @@use_fx_with_petal
                       previous_number.to_i ^ 1
                     else
                       0
@@ -198,7 +198,7 @@ module PetalLang
         play_array(cycle.sound_array, dur, loop_index, cycle)
       end
 
-      if @@switch_live_loop && !previous_number.nil?
+      if @@use_fx_with_petal && !previous_number.nil?
         previous_loop = "#{loop_name}_#{previous_number}".intern
         live_loop previous_loop, sync: :d0 do
           stop
@@ -273,8 +273,8 @@ def solo(loop_name, sound = nil, **option_hash)
   dirt_solo loop_name, sound, option_hash
 end
 
-def switch_live_loop(switch = true)
-  @@switch_live_loop = switch
+def use_fx_with_petal(use = true)
+  @@use_fx_with_petal = use
 end
 
 def dirt_names
