@@ -1,3 +1,4 @@
+require 'singleton'
 require_relative './EuclideanRhythm/euclidean_rhythm.rb'
 require_relative './petal_data.rb'
 

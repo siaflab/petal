@@ -30,7 +30,6 @@
 # d2 'sn sn/4 ~ sn', speed: '1 -0.5 2 -1.5', pan: 'rand -1 1'
 # d3 :loop_garzul, stretch: :p, slow: 32, gain: 0.5
 #++
-require 'singleton'
 require_relative './petal_data.rb'
 require_relative './petal_parser.rb'
 

@@ -1,5 +1,3 @@
-require 'singleton'
-
 module PetalLang
   module LoopHolder
     extend self
