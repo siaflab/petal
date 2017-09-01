@@ -26,7 +26,7 @@ It’s also possible to specify the sample number separately:
 d1 "bd", n: "3"
 ```
 
-You can also specify Sonic Pi builtin sample as a sample name:
+You can also specify Sonic Pi built-in sample as a sample name:
 ```ruby
 d1 :bd_haus
 ```
@@ -372,3 +372,45 @@ These types of sequences use “Bjorklund’s algorithm”, which wasn’t made 
 * (9,16) : A rhythm necklace used in the Central African Republic.
 * (11,24,14) : A rhythm necklace of the Aka Pygmies of Central Africa.
 * (13,24,5) : Another rhythm necklace of the Aka Pygmies of the upper Sangha.
+
+## Effects
+### Using Sonic Pi's built-in `with_fx` block
+
+You can use Sonic Pi's built-in `with_fx` block from Petal v1.1.0.
+
+```ruby
+with_fx :reverb, room: 1 do
+  d1 "arpy(3,8)"
+end
+```
+
+You can also configure or remove the effects.
+
+```ruby
+with_fx :reverb, room: 1, mix: 0.6 do
+  d1 "arpy(3,8)"
+end
+```
+
+```ruby
+d1 "arpy(3,8)"
+```
+
+### Effects and the performance
+
+Every time you `Run` the petal code, Petal switches two live_loops to apply the effects to a fresh live_loop environment. This will take some cost for the performance. If you won't use effects and you want to make the code more efficient, the feature can be off with `use_fx_with_petal` function.
+
+```ruby
+use_fx_with_petal false
+d1 "arpy(3,8)"
+```
+
+## Sync
+### Sync with another computer running Petal
+
+There's no special mechanism to automatically sync with another computer running Petal, but you can manually sync them by shifting the beat on one computer with `set_sched_ahead_time!` function.
+
+```ruby
+set_sched_ahead_time! 0.84  # Configure this argument to sync the beat.
+d1 :bd_haus
+```
