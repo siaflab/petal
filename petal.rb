@@ -175,7 +175,7 @@ module PetalLang
 
       previous_number = @@loop_sub_numbers[loop_name]
       puts "previous_number: #{previous_number}"
-      next_number = if previous_number.nil
+      next_number = if previous_number.nil?
                       0
                     elsif !@@use_fx_with_petal
                       previous_number.to_i
