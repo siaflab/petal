@@ -20,8 +20,7 @@ Download zip file from [Release Page](https://github.com/siaflab/petal/releases/
 Open an empty Sonic Pi buffer, type in the following code and hit `Run`.
 
 ```ruby
-load "~/petal/petal.rb"   # the path you extract the file
-
+require "~/petal/petal.rb"   # the path you extract the file
 d1 'bd'
 ```
 
@@ -40,14 +39,14 @@ Here are some example code from our live performance of [space-moere](http://spa
 space-moere #0 - Balloon
 
 ```ruby
-load "~/petal/petal.rb"
+require "~/petal/petal.rb"
 d1"outdoor:2/2",rate:"rand -1 -0.125"
 ```
 
 space-moere #1 - Landing
 
 ```ruby
-load "~/petal/petal.rb"
+require "~/petal/petal.rb"
 cps 0.55
 d1":bd_haus*4"
 d2"sid(11,16,2)",n:'irand 1 11'
@@ -56,7 +55,7 @@ d2"sid(11,16,2)",n:'irand 1 11'
 space-moere #2 - Clouds
 
 ```ruby
-load "~/petal/petal.rb"
+require "~/petal/petal.rb"
 cps 0.55
 d1":bd_klub(12,32) :bd_klub(12,32)",rate:"1.5 1",slow:8
 d2"ul(11,16,3)",n:'irand 9'
@@ -65,7 +64,7 @@ d2"ul(11,16,3)",n:'irand 9'
 space-moere #3 - Outer
 
 ```ruby
-load "~/petal/petal.rb"
+require "~/petal/petal.rb"
 cps 0.55
 d1"d(7,8,1)",n:'irand 3'
 ```
