@@ -9,7 +9,7 @@ The primal motivation of this project is creating a language suitable for our _t
 
 ## Requirements
 
-Sonic Pi v2.11 or v2.10
+Sonic Pi v2.10 or later (v2.10, v2.11.1, v3.0.1)
 
 ## Installation
 
