@@ -2,6 +2,38 @@
 
 For the language specification of Petal is a subset of that of TidalCycles, the following guide is based on [Tidal: the guide](https://tidalcycles.org/patterns.html) and rewritten for Petal.
 
+## Table of Contents
+
+* [Creating Rhythmic Sequences](#creating-rhythmic-sequences)
+  * [Sequences](#sequences)
+    * [Play a Single Sample](#play-a-single-sample)
+    * [Sequences From Multiple Samples](#sequences-from-multiple-samples)
+    * [Rests](#rests)
+    * [Playing More Than One Sequence](#playing-more-than-one-sequence)
+    * [What is a Cycle?](#what-is-a-cycle)
+    * [Silence](#silence)
+    * [Pattern Groups](#pattern-groups)
+    * [Pattern Repetition and Speed](#pattern-repetition-and-speed)
+* [Using Options](#using-options)
+  * [Options](#options)
+    * [Options are patterns too](#options-are-patterns-too)
+    * [Option pattern order (Left\-most option pattern)](#option-pattern-order-left-most-option-pattern)
+  * [Option Specifications](#option-specifications)
+    * [gain/amp](#gainamp)
+    * [speed/rate](#speedrate)
+    * [slow, fast/density](#slow-fastdensity)
+    * [stretch](#stretch)
+  * [Randomness](#randomness)
+    * [Random Decimal Patterns](#random-decimal-patterns)
+    * [Random Integer Patterns](#random-integer-patterns)
+* [Euclidean Sequences](#euclidean-sequences)
+  * [Bjorklund](#bjorklund)
+* [Effects](#effects)
+  * [Using Sonic Pi's built\-in with\_fx block](#using-sonic-pis-built-in-with_fx-block)
+  * [Effects and the performance](#effects-and-the-performance)
+* [Sync](#sync)
+  * [Sync with another computer running Petal](#sync-with-another-computer-running-petal)
+
 ## Creating Rhythmic Sequences
 ### Sequences
 #### Play a Single Sample
