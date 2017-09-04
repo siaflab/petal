@@ -26,7 +26,7 @@ d1 'bd'
 
 ## Tutorial
 
-[Petal: the guilde](https://github.com/siaflab/petal/blob/master/patterns.md)
+[Petal: the guide](https://github.com/siaflab/petal/blob/master/patterns.md)
 
 ## Demo
 
