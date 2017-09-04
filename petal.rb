@@ -174,11 +174,15 @@ module PetalLang
       cycle = Parser.parse(@@bpm, sound, **option_hash)
 
       previous_number = @@loop_sub_numbers[loop_name]
-      next_number = if !previous_number.nil? && @@use_fx_with_petal
-                      previous_number.to_i ^ 1
-                    else
+      puts "previous_number: #{previous_number}"
+      next_number = if previous_number.nil
                       0
+                    elsif !@@use_fx_with_petal
+                      previous_number.to_i
+                    else
+                      previous_number.to_i + 1
                     end
+      puts "next_number: #{next_number}"
       next_loop = "#{loop_name}_#{next_number}".intern
       @@loop_sub_numbers[loop_name] = next_number.to_i
 
@@ -189,6 +193,8 @@ module PetalLang
         @@solo = nil
       end
 
+      puts "next_loop: #{next_loop}"
+      puts "cycle.sound_array.empty?: #{cycle.sound_array.empty?}"
       live_loop next_loop, sync: :d0 do
         stop if cycle.sound_array.empty?
         loop_index = tick

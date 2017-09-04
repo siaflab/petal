@@ -430,7 +430,7 @@ d1 "arpy(3,8)"
 
 ### Effects and the performance
 
-Every time you `Run` the Petal code, Petal switches two live_loops to apply the effects to a fresh live_loop environment. This will take some cost for the performance. If you won't use effects and you want to make the code more efficient, this feature can be off with `use_fx_with_petal` function.
+Every time you `Run` the Petal code, Petal creates a new live_loop to apply the effects to a fresh live_loop environment. This will take some cost for the performance. If you won't use effects and you want to make the code more efficient, this feature can be off with `use_fx_with_petal` function.
 
 ```ruby
 use_fx_with_petal false
