@@ -34,7 +34,7 @@ https://twitter.com/kn1kn1/status/881498461635461121
 
 ## Examples
 
-Here are some example code from our live performance of [space-moere](http://space-moere.org/).
+Here is some example code from our live performance of [space-moere](http://space-moere.org/).
 
 space-moere #0 - Balloon
 

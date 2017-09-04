@@ -1,6 +1,6 @@
 # Petal: the guide
 
-For the language specification of Petal is subset of that of TidalCycles, the following guide is based on [Tidal: the guide](https://tidalcycles.org/patterns.html) and rewritten for Petal.
+For the language specification of Petal is a subset of that of TidalCycles, the following guide is based on [Tidal: the guide](https://tidalcycles.org/patterns.html) and rewritten for Petal.
 
 ## Creating Rhythmic Sequences
 ### Sequences
@@ -68,7 +68,7 @@ The following code slows all sequences.
 cps 0.5
 ```
 
-You can also use `bpm` (beat per minute) or `bps` (beat per second) for specifing the cycle's duration.
+You can also use `bpm` (beat per minute) or `bps` (beat per second) for specifying the cycle's duration.
 
 ```ruby
 bpm 120
@@ -92,7 +92,7 @@ At this point you probably want to know how to stop the patterns you started. An
 d1 :silence
 ```
 
-Or you can stop the loop by just passing empty argument to the function.
+Or you can stop the loop by just passing an empty argument to the function.
 
 ```ruby
 d1
@@ -223,7 +223,7 @@ You can change the volume of a sample by using the `gain` or `amp` option.
 d1 "bd*4", amp: 1.2
 ```
 
-You can specify a number as a valume of `gain`/`amp` option.
+You can specify a number as a volume of `gain`/`amp` option.
 
 #### speed/rate
 
@@ -398,7 +398,7 @@ d1 "arpy(3,8)"
 
 ### Effects and the performance
 
-Every time you `Run` the petal code, Petal switches two live_loops to apply the effects to a fresh live_loop environment. This will take some cost for the performance. If you won't use effects and you want to make the code more efficient, the feature can be off with `use_fx_with_petal` function.
+Every time you `Run` the Petal code, Petal switches two live_loops to apply the effects to a fresh live_loop environment. This will take some cost for the performance. If you won't use effects and you want to make the code more efficient, this feature can be off with `use_fx_with_petal` function.
 
 ```ruby
 use_fx_with_petal false
