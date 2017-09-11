@@ -89,22 +89,15 @@ module PetalLang
 
     def ==(other)
       return false if other.nil?
-      return false unless other.is_a?(Rand)
+      return false unless other.instance_of?(Rand)
       @min == other.min && @max == other.max
     end
   end
 
-  class IRand
-    attr_reader :min
-    attr_reader :max
-    def initialize(min, max)
-      @min = min
-      @max = max
-    end
-
+  class IRand < Rand
     def ==(other)
       return false if other.nil?
-      return false unless other.is_a?(IRand)
+      return false unless other.instance_of?(IRand)
       @min == other.min && @max == other.max
     end
   end

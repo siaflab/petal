@@ -65,9 +65,9 @@ module PetalLang
     end
 
     def calc_rand(r)
-      if r.is_a?(Rand)
+      if r.instance_of?(Rand)
         rrand(r.min.to_f, r.max.to_f)
-      elsif r.is_a?(IRand)
+      elsif r.instance_of?(IRand)
         rrand_i(r.min.to_i, r.max.to_i)
       end
     end
