@@ -25,7 +25,7 @@ module PetalLang
 
     def ==(other)
       return false if other.nil?
-      return false unless other.is_a?(Cycle)
+      return false unless other.instance_of?(Cycle)
       @bpm == other.bpm && @sound_array == other.sound_array &&
         @stretch == other.stretch && @random_n == other.random_n &&
         @random_gain == other.random_gain && @random_pan == other.random_pan &&
@@ -52,7 +52,7 @@ module PetalLang
 
     def ==(other)
       return false if other.nil?
-      return false unless other.is_a?(Sound)
+      return false unless other.instance_of?(Sound)
       @name == other.name && @index == other.index &&
         @divisor.to_f == other.divisor.to_f && @amp.to_f == other.amp.to_f &&
         @pan.to_f == other.pan.to_f && @rate.to_f == other.rate.to_f
@@ -72,7 +72,7 @@ module PetalLang
 
     def ==(other)
       return false if other.nil?
-      return false unless other.is_a?(Option)
+      return false unless other.instance_of?(Option)
       @value == other.value && @divisor.to_f == other.divisor.to_f
     end
 

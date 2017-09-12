@@ -39,7 +39,7 @@ module PetalLang
     def dfs_merge_with_n_array(sound_array, n_array)
       dfs_each_with_index_map(sound_array) do |sound, index_array|
         n_element = find_element(index_array, n_array)
-        sound.index = n_element.value.to_i unless n_element == Option::REST
+        sound.index = n_element.value.to_i unless Option::REST.equal?(n_element)
         sound
       end
     end
@@ -47,7 +47,7 @@ module PetalLang
     def dfs_merge_with_gain_array(sound_array, gain_array)
       dfs_each_with_index_map(sound_array) do |sound, index_array|
         gain = find_element(index_array, gain_array)
-        sound.amp = gain.value unless gain == Option::REST
+        sound.amp = gain.value unless Option::REST.equal?(gain)
         sound
       end
     end
@@ -55,7 +55,7 @@ module PetalLang
     def dfs_merge_with_pan_array(sound_array, pan_array)
       dfs_each_with_index_map(sound_array) do |sound, index_array|
         pan = find_element(index_array, pan_array)
-        sound.pan = pan.value unless pan == Option::REST
+        sound.pan = pan.value unless Option::REST.equal?(pan)
         sound
       end
     end
@@ -63,14 +63,14 @@ module PetalLang
     def dfs_merge_with_speed_array(sound_array, speed_array)
       dfs_each_with_index_map(sound_array) do |sound, index_array|
         speed = find_element(index_array, speed_array)
-        sound.rate = sound.rate.to_f * speed.value.to_f unless speed == Option::REST
+        sound.rate = sound.rate.to_f * speed.value.to_f unless Option::REST.equal?(speed)
         sound
       end
     end
 
     def dfs_merge_n_array_with_sound_array(n_array, sound_array)
       dfs_each_with_index_map(n_array) do |n_element, index_array|
-        if n_element == Option::REST
+        if Option::REST.equal?(n_element)
           sound = Sound::REST
         else
           s = find_element(index_array, sound_array)
@@ -83,7 +83,7 @@ module PetalLang
 
     def dfs_merge_gain_array_with_sound_array(gain_array, sound_array)
       dfs_each_with_index_map(gain_array) do |gain, index_array|
-        if gain == Option::REST
+        if Option::REST.equal?(gain)
           sound = Sound::REST
         else
           s = find_element(index_array, sound_array)
@@ -96,7 +96,7 @@ module PetalLang
 
     def dfs_merge_pan_array_with_sound_array(pan_array, sound_array)
       dfs_each_with_index_map(pan_array) do |pan, index_array|
-        if pan == Option::REST
+        if Option::REST.equal?(pan)
           sound = Sound::REST
         else
           s = find_element(index_array, sound_array)
@@ -109,7 +109,7 @@ module PetalLang
 
     def dfs_merge_speed_array_with_sound_array(speed_array, sound_array)
       dfs_each_with_index_map(speed_array) do |speed, index_array|
-        if speed == Option::REST
+        if Option::REST.equal?(speed)
           sound = Sound::REST
         else
           s = find_element(index_array, sound_array)

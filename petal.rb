@@ -35,7 +35,6 @@ require_relative './petal_parser.rb'
 
 module PetalLang
   module Petal
-    extend self
     include PetalLang::LoopHolder
 
     @@seconds_per_cycle = 1.0
