@@ -1,3 +1,0 @@
-test:
-  override:
-    - ruby petal_test.rb
