@@ -222,32 +222,13 @@ class TestParserModule < Test::Unit::TestCase
     s.rate = '1'
     r = PetalLang::Sound::REST
     # TODO: [[]]にならないよう、PetalLang::Parser.parseを変更する
-    expected = PetalLang::Cycle.new(120, [[s, r, s, s, r, s, r, s]])
+    # expected = [s, r, s, s, r, s, s, r] # E(5,8)=[x . x x . x x .]
+    expected = PetalLang::Cycle.new(120, [[s, s, r, s, s, r, s, r]])  # E(5,8,2)=[x x . x x . x .]
     actual = PetalLang::Parser.parse(120, speed: '1(5,8,2)', s: 'hh')
     # expected = PetalLang::Cycle.new(120, [[s]])
     # actual = PetalLang::Parser.parse(120, speed: "1(1,1)", s: 'hh')
     assert_equal expected, actual
   end
-
-  # def test_process_token_float_euc_5_8_2
-  #   s = PetalLang::Option.new('1', 1)
-  #   r = PetalLang::Option::REST
-  #   # expected = [s, r, s, s, r, s, s, r] # E(5,8)=[x . x x . x x .]
-  #   # `beat_rotations=1`で次のxまで進む模様
-  #   expected = [s, r, s, s, r, s, r, s] # E(5,8,2)=[x . x x . x . x]
-  #   actual = PetalLang::Parser::OptionParser.instance.process_token('1(5,8,2)')
-  #   assert_equal expected, actual
-  # end
-  #
-  # def test_read_float_euc_5_8_2
-  #   s = PetalLang::Option.new('1', 1)
-  #   r = PetalLang::Option::REST
-  #   # expected = [s, r, s, s, r, s, s, r] # E(5,8)=[x . x x . x x .]
-  #   # `beat_rotations=1`で次のxまで進む模様
-  #   expected = [s, r, s, s, r, s, r, s] # E(5,8,2)=[x . x x . x . x]
-  #   actual = PetalLang::Parser::OptionParser.instance.read('1(5,8,2)')
-  #   assert_equal expected, actual
-  # end
 
   def test_parse_rand_number_int
     expected = nil
@@ -467,8 +448,7 @@ class TestSoundParser < Test::Unit::TestCase
     s = PetalLang::Sound.new('bd', 0, 1)
     r = PetalLang::Sound::REST
     # expected = [s, r, s, s, r, s, s, r] # E(5,8)=[x . x x . x x .]
-    # `beat_rotations=1`で次のxまで進む模様
-    expected = [s, s, r, s, s, r, s, r] # E(5,8,1)=[x x . x x . x .]
+    expected = [r, s, s, r, s, s, r, s] # E(5,8,1)=[. x x . x x . x]
     actual = PetalLang::Parser::SoundParser.instance.process_token('bd(5,8,1)')
     assert_equal expected, actual
   end
@@ -477,8 +457,7 @@ class TestSoundParser < Test::Unit::TestCase
     s = PetalLang::Sound.new('bd', 0, 1)
     r = PetalLang::Sound::REST
     # expected = [s, r, s, s, r, s, s, r] # E(5,8)=[x . x x . x x .]
-    # `beat_rotations=1`で次のxまで進む模様
-    expected = [s, r, s, s, r, s, r, s] # E(5,8,2)=[x . x x . x . x]
+    expected = [s, s, r, s, s, r, s, r] # E(5,8,2)=[x x . x x . x .]
     actual = PetalLang::Parser::SoundParser.instance.process_token('bd(5,8,2)')
     assert_equal expected, actual
   end
@@ -519,8 +498,7 @@ class TestOptionParser < Test::Unit::TestCase
     s = PetalLang::Option.new('0.5', 1)
     r = PetalLang::Option::REST
     # expected = [s, r, s, s, r, s, s, r] # E(5,8)=[x . x x . x x .]
-    # `beat_rotations=1`で次のxまで進む模様
-    expected = [s, r, s, s, r, s, r, s] # E(5,8,2)=[x . x x . x . x]
+    expected = [s, s, r, s, s, r, s, r] # E(5,8,2)=[x x . x x . x .]
     actual = PetalLang::Parser::OptionParser.instance.process_token('0.5(5,8,2)')
     assert_equal expected, actual
   end

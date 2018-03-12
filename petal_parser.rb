@@ -156,9 +156,7 @@ module PetalLang
       res = EuclideanRhythm.euclidean_rhythm(num_accents, size)
       if beat_rotations && beat_rotations.is_a?(Numeric)
         beat_rotations = beat_rotations.abs
-        while beat_rotations > 0
-          beat_rotations -= 1 if res.rotate!.first == true
-        end
+        res.rotate!(beat_rotations)
       end
       res
     end
