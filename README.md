@@ -1,4 +1,4 @@
-# Petal
+# Petal [![CircleCI](https://circleci.com/gh/siaflab/petal.svg?style=svg)](https://circleci.com/gh/siaflab/petal)
 <img src="logo/p1.cfdg.png" alt="Petal logo" title="Petal" width="240" height="240" align="right" />
 
 ## About
