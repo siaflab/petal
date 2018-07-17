@@ -32,10 +32,12 @@
 #++
 require_relative './petal_data.rb'
 require_relative './petal_parser.rb'
+require_relative './petal_util.rb'
 
 module PetalLang
   module Petal
     include PetalLang::LoopHolder
+    include PetalLang::Util
 
     @@seconds_per_cycle = 1.0
     @@bpm = 60
@@ -72,11 +74,11 @@ module PetalLang
     end
 
     def play_sound(sound, dur, loop_index, cycle)
-      puts "sound: #{sound}"
-      puts "dur: #{dur}"
-      puts "cycle.random_gain: #{cycle.random_gain}"
-      puts "cycle.random_pan: #{cycle.random_pan}"
-      puts "cycle.random_speed: #{cycle.random_speed}"
+      dbg "sound: #{sound}"
+      dbg "dur: #{dur}"
+      dbg "cycle.random_gain: #{cycle.random_gain}"
+      dbg "cycle.random_pan: #{cycle.random_pan}"
+      dbg "cycle.random_speed: #{cycle.random_speed}"
       if Sound::REST.equal?(sound)
         # 休符
         sleep dur
@@ -105,9 +107,9 @@ module PetalLang
         end
       else
         sample_dir = File.expand_path(@@dirt_dir + '/' + name) + '/'
-        puts "sample_dir: #{sample_dir}"
-        puts "index: #{index}"
-        puts "rate: #{rate}"
+        dbg "sample_dir: #{sample_dir}"
+        dbg "index: #{index}"
+        dbg "rate: #{rate}"
         case stretch
         when :b, 'b'
           # beat_stretch指定の場合はrate:を無視する
@@ -170,14 +172,14 @@ module PetalLang
     end
 
     def dirt(loop_name, sound = nil, **option_hash)
-      puts "sound: #{sound}"
-      puts "option_hash: #{option_hash}"
+      dbg "sound: #{sound}"
+      dbg "option_hash: #{option_hash}"
       return if !@@solo.nil? && @@solo != loop_name # 他のループがsoloの場合
 
       cycle = Parser.parse(@@bpm, sound, **option_hash)
 
       previous_number = @@loop_sub_numbers[loop_name]
-      puts "previous_number: #{previous_number}"
+      dbg "previous_number: #{previous_number}"
       next_number = if previous_number.nil?
                       0
                     elsif !@@use_fx_with_petal
@@ -185,7 +187,7 @@ module PetalLang
                     else
                       previous_number.to_i + 1
                     end
-      puts "next_number: #{next_number}"
+      dbg "next_number: #{next_number}"
       next_loop = "#{loop_name}_#{next_number}".intern
       @@loop_sub_numbers[loop_name] = next_number.to_i
 
@@ -196,12 +198,12 @@ module PetalLang
         @@solo = nil
       end
 
-      puts "next_loop: #{next_loop}"
-      puts "cycle.sound_array.empty?: #{cycle.sound_array.empty?}"
+      dbg "next_loop: #{next_loop}"
+      dbg "cycle.sound_array.empty?: #{cycle.sound_array.empty?}"
       live_loop next_loop, sync: :d0 do
         stop if cycle.sound_array.empty?
         loop_index = tick
-        puts "loop_index: #{loop_index}"
+        dbg "loop_index: #{loop_index}"
         use_bpm cycle.bpm
         play_array(cycle.sound_array, dur, loop_index, cycle)
       end

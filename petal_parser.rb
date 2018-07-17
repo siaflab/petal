@@ -1,10 +1,12 @@
 require 'singleton'
 require_relative './EuclideanRhythm/euclidean_rhythm.rb'
 require_relative './petal_data.rb'
+require_relative './petal_util.rb'
 
 module PetalLang
   module Parser
     extend self
+    include PetalLang::Util
 
     def normalize_sound_string(sound)
       sound_string = if sound.is_a?(Symbol)
@@ -126,7 +128,7 @@ module PetalLang
       if random_n.nil?
         option_string = Parser.normalize_option_string(option)
         option_array = Parser::OptionParser.instance.read(option_string)
-        puts "option_array: #{option_array}"
+        dbg "option_array: #{option_array}"
         yield(option_array)
         # 後ろの処理でparseさせないよう、ここで当該オプションを削除
         option_hash.delete(key)
@@ -141,7 +143,7 @@ module PetalLang
         #  "[[[1, 3]]]"の場合に、index_arrayを[0, 0, 0, 0]や[0, 0, 0, 1]とせず、
         #  [0]や[1]になるようにする。
         index_array.push(i) if push_index
-        puts "index_array: #{index_array}"
+        dbg "index_array: #{index_array}"
         e = if is_array
               dfs_each_with_index_map(e, index_array, &block)
             else
@@ -184,7 +186,7 @@ module PetalLang
 
     def find_left_most_option(**option_hash)
       option_hash.each do |k, v|
-        puts "option_hash[#{k}]: #{v}"
+        dbg "option_hash[#{k}]: #{v}"
         case k
         when :s, :sound, :n, :gain, :amp, :pan, :speed, :rate
           return k
@@ -213,7 +215,7 @@ module PetalLang
 
         sound_string = Parser.normalize_sound_string(sound)
         sound_array = Parser::SoundParser.instance.read(sound_string)
-        puts "sound_array: #{sound_array}"
+        dbg "sound_array: #{sound_array}"
 
         left_most = find_left_most_option(**option_hash)
         case left_most
@@ -231,7 +233,7 @@ module PetalLang
             sound_array = Parser.dfs_merge_pan_array_with_sound_array(pan_array, sound_array)
           end
         when :speed, :rate
-          puts "sound_array: #{sound_array}"
+          dbg "sound_array: #{sound_array}"
           Parser.merge_with_sound_array(option_hash, left_most) do |speed_array|
             sound_array = Parser.dfs_merge_speed_array_with_sound_array(speed_array, sound_array)
           end
@@ -245,7 +247,7 @@ module PetalLang
         if random_n.nil?
           n_string = Parser.normalize_option_string(n_option)
           n_array = Parser::OptionParser.instance.read(n_string)
-          puts n_array
+          dbg n_array
           sound_array = Parser.dfs_merge_with_n_array sound_array, n_array
         end
       end
@@ -257,7 +259,7 @@ module PetalLang
         if random_gain.nil?
           gain_string = Parser.normalize_option_string(gain)
           gain_array = Parser::OptionParser.instance.read(gain_string)
-          puts gain_array
+          dbg gain_array
           sound_array = Parser.dfs_merge_with_gain_array sound_array, gain_array
         end
       end
@@ -269,7 +271,7 @@ module PetalLang
         if random_pan.nil?
           pan_string = Parser.normalize_option_string(pan)
           pan_array = Parser::OptionParser.instance.read(pan_string)
-          puts pan_array
+          dbg pan_array
           sound_array = Parser.dfs_merge_with_pan_array sound_array, pan_array
         end
       end
@@ -281,7 +283,7 @@ module PetalLang
         if random_speed.nil?
           speed_string = Parser.normalize_option_string(speed)
           speed_array = Parser::OptionParser.instance.read(speed_string)
-          puts speed_array
+          dbg speed_array
           sound_array = Parser.dfs_merge_with_speed_array sound_array, speed_array
         end
       end
@@ -290,7 +292,7 @@ module PetalLang
       bpm *= density.to_f unless density.nil?
       slow = option_hash[:slow]
       bpm /= slow.to_f unless slow.nil?
-      puts "bpm: #{bpm}"
+      dbg "bpm: #{bpm}"
 
       stretch = option_hash[:stretch]
       Cycle.new(bpm, sound_array, stretch, random_n, random_gain, random_pan, random_speed)
@@ -342,12 +344,12 @@ module PetalLang
         size = m[10].to_i if m[10] && m[10] != ''
         beat_rotations = m[11].to_i if m[11] && m[11] != ''
 
-        puts "index: #{index}"
-        puts "operator: #{operator}"
-        puts "number: #{number}"
-        puts "num_accents: #{num_accents}"
-        puts "size: #{size}"
-        puts "beat_rotations: #{beat_rotations}"
+        dbg "index: #{index}"
+        dbg "operator: #{operator}"
+        dbg "number: #{number}"
+        dbg "num_accents: #{num_accents}"
+        dbg "size: #{size}"
+        dbg "beat_rotations: #{beat_rotations}"
 
         if num_accents && num_accents != 0 && size && size != 0
           pattern = Parser.euclidean_rhythm(num_accents, size, beat_rotations)
@@ -394,8 +396,8 @@ module PetalLang
         size = m[9].to_i if m[9] && m[9] != ''
         beat_rotations = m[10].to_i if m[10] && m[10] != ''
 
-        puts "operator: #{operator}"
-        puts "number: #{number}"
+        dbg "operator: #{operator}"
+        dbg "number: #{number}"
 
         if num_accents && num_accents != 0 && size && size != 0
           pattern = Parser.euclidean_rhythm(num_accents, size, beat_rotations)
