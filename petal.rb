@@ -137,6 +137,10 @@ module PetalLang
       @@bpm = beat_per_min
     end
 
+    def get_bpm
+      @@bpm
+    end
+
     def dirt_stop(loop_name)
       sub_number = @@loop_sub_numbers[loop_name]
       unless sub_number.nil?
