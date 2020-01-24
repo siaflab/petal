@@ -32,6 +32,7 @@ For the language specification of Petal is a subset of that of TidalCycles, the 
   * [Using Sonic Pi's built\-in with\_fx block](#using-sonic-pis-built-in-with_fx-block)
   * [Effects and the performance](#effects-and-the-performance)
 * [Sync](#sync)
+  * [Sync with another liveloop running outside of Petal](#sync-with-another-liveloop-running-outside-of-petal)
   * [Sync with another computer running Petal](#sync-with-another-computer-running-petal)
 
 ## Creating Rhythmic Sequences
@@ -438,6 +439,22 @@ d1 "arpy(3,8)"
 ```
 
 ## Sync
+### Sync with another liveloop running outside of Petal
+
+You can sync with another liveloop by syncing the `:d0` livelopp and also sync bpm by using method `ge_bpm`.
+
+```ruby
+bpm 200
+
+d1 'bd'
+
+live_loop :l0, sync: :d0 do # sync with :d0 (Petal's master loop name)
+  use_bpm get_bpm # retrieve bpm value by get_bpm method defined in petal.rb
+  play 45
+  sleep 1
+end
+```
+
 ### Sync with another computer running Petal
 
 There's no special mechanism to automatically sync with another computer running Petal, but you can manually sync them by shifting the beat on one computer with `set_sched_ahead_time!` function.
