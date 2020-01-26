@@ -441,7 +441,7 @@ d1 "arpy(3,8)"
 ## Sync
 ### Sync with another liveloop running outside of Petal
 
-You can sync with another liveloop by syncing the `:d0` livelopp and also sync bpm by using method `ge_bpm`.
+You can sync with another liveloop by syncing the `:d0` liveloop and also sync bpm by using method `get_bpm`.
 
 ```ruby
 bpm 200
