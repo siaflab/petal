@@ -284,7 +284,7 @@ def solo(loop_name, sound = nil, **option_hash)
 end
 
 def use_fx_with_petal(use = true)
-  @@use_fx_with_petal = use
+  PetalLang::Petal.class_variable_set(:@@use_fx_with_petal, use)
 end
 
 def dirt_names
