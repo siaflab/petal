@@ -123,8 +123,16 @@ module PetalLang
       sleep dur_per_sample
     end
 
+    def set_use_fx_with_petal(use)
+      @@use_fx_with_petal = use
+    end
+
     def set_dirt_dir(dir)
       @@dirt_dir = dir
+    end
+
+    def get_dirt_dir()
+      @@dirt_dir
     end
 
     def set_seconds_per_cycle(sec)
@@ -284,11 +292,11 @@ def solo(loop_name, sound = nil, **option_hash)
 end
 
 def use_fx_with_petal(use = true)
-  PetalLang::Petal.class_variable_set(:@@use_fx_with_petal, use)
+  set_use_fx_with_petal(use)
 end
 
 def dirt_names
-  path = File.expand_path(@@dirt_dir)
+  path = File.expand_path(get_dirt_dir)
   entries = Dir.entries(path)
   entries -= ['.']
   entries -= ['..']
@@ -297,7 +305,7 @@ def dirt_names
 end
 
 def dirt_sample(name, index = 0)
-  path = File.expand_path(@@dirt_dir + '/' + name) + '/'
+  path = File.expand_path(get_dirt_dir + '/' + name) + '/'
   entries = Dir.entries(path)
   entries -= ['.']
   entries -= ['..']
@@ -306,7 +314,7 @@ def dirt_sample(name, index = 0)
 end
 
 def dirt_samples(name)
-  path = File.expand_path(@@dirt_dir + '/' + name) + '/'
+  path = File.expand_path(get_dirt_dir + '/' + name) + '/'
   entries = Dir.entries(path)
   entries -= ['.']
   entries -= ['..']
