@@ -69,7 +69,7 @@ d1 :bd_haus
 Putting things in quotes allows you to define a sequence. For example, the following gives you a pattern of kick drum then snare:
 
 ```ruby
-d1 "bd sd:3"
+d1 "bd sn:3"
 ```
 
 #### Rests
@@ -86,7 +86,7 @@ Think of the ~ as an ‘empty’ step in a sequence, that just produces silence.
 
 The easiest way to play multiple sequences at the same time is to use two or more live_loops:
 ```ruby
-d1 "bd sd:1"
+d1 "bd sn:1"
 d2 "hh hh hh hh"
 d3 "arpy"
 ```
@@ -150,24 +150,24 @@ Please note that you need to specify the connection name as a ruby symbol (from 
 You can use Tidal’s square brackets syntax in Petal to create a pattern grouping:
 
 ```ruby
-d1 "[bd sd sd] cp"
+d1 "[bd sn sn] cp"
 ```
 
 Square brackets allow several events to be played inside of a single step. You can think of the above pattern as having two steps, with the first step broken down into a subpattern, which has three steps. Practically, this means you can create denser sub-divisions of cycles:
 
 ```ruby
-d1 "bd [sd sd]"
-d1 "bd [sd sd sd]"
-d1 "bd [sd sd sd sd]"
-d1 "[bd bd] [sd sd sd sd]"
-d1 "[bd bd bd] [sd sd]"
-d1 "[bd bd bd bd] [sd]"
+d1 "bd [sn sn]"
+d1 "bd [sn sn sn]"
+d1 "bd [sn sn sn sn]"
+d1 "[bd bd] [sn sn sn sn]"
+d1 "[bd bd bd] [sn sn]"
+d1 "[bd bd bd bd] [sn]"
 ```
 
 You can even nest groups inside groups to create increasingly dense and complex patterns:
 
 ```ruby
-d1 "[bd bd] [bd [sd [sd sd] sd] sd]"
+d1 "[bd bd] [bd [sn [sn sn] sn] sn]"
 ```
 
 #### Pattern Repetition and Speed

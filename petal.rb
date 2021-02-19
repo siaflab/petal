@@ -123,8 +123,16 @@ module PetalLang
       sleep dur_per_sample
     end
 
+    def set_use_fx_with_petal(use)
+      @@use_fx_with_petal = use
+    end
+
     def set_dirt_dir(dir)
       @@dirt_dir = dir
+    end
+
+    def get_dirt_dir()
+      @@dirt_dir
     end
 
     def set_seconds_per_cycle(sec)
@@ -168,7 +176,7 @@ module PetalLang
         next if s == loop_name
         dirt_stop(s)
       end
-      dirt loop_name, sound, option_hash
+      dirt loop_name, sound, **option_hash
     end
 
     def dirt(loop_name, sound = nil, **option_hash)
@@ -240,39 +248,39 @@ def bpm(beat_per_min)
 end
 
 def d1(sound = nil, **option_hash)
-  dirt :d1, sound, option_hash
+  dirt :d1, sound, **option_hash
 end
 
 def d2(sound = nil, **option_hash)
-  dirt :d2, sound, option_hash
+  dirt :d2, sound, **option_hash
 end
 
 def d3(sound = nil, **option_hash)
-  dirt :d3, sound, option_hash
+  dirt :d3, sound, **option_hash
 end
 
 def d4(sound = nil, **option_hash)
-  dirt :d4, sound, option_hash
+  dirt :d4, sound, **option_hash
 end
 
 def d5(sound = nil, **option_hash)
-  dirt :d5, sound, option_hash
+  dirt :d5, sound, **option_hash
 end
 
 def d6(sound = nil, **option_hash)
-  dirt :d6, sound, option_hash
+  dirt :d6, sound, **option_hash
 end
 
 def d7(sound = nil, **option_hash)
-  dirt :d7, sound, option_hash
+  dirt :d7, sound, **option_hash
 end
 
 def d8(sound = nil, **option_hash)
-  dirt :d8, sound, option_hash
+  dirt :d8, sound, **option_hash
 end
 
 def d9(sound = nil, **option_hash)
-  dirt :d9, sound, option_hash
+  dirt :d9, sound, **option_hash
 end
 
 def hush
@@ -280,15 +288,15 @@ def hush
 end
 
 def solo(loop_name, sound = nil, **option_hash)
-  dirt_solo loop_name, sound, option_hash
+  dirt_solo loop_name, sound, **option_hash
 end
 
 def use_fx_with_petal(use = true)
-  @@use_fx_with_petal = use
+  set_use_fx_with_petal(use)
 end
 
 def dirt_names
-  path = File.expand_path(@@dirt_dir)
+  path = File.expand_path(get_dirt_dir)
   entries = Dir.entries(path)
   entries -= ['.']
   entries -= ['..']
@@ -297,7 +305,7 @@ def dirt_names
 end
 
 def dirt_sample(name, index = 0)
-  path = File.expand_path(@@dirt_dir + '/' + name) + '/'
+  path = File.expand_path(get_dirt_dir + '/' + name) + '/'
   entries = Dir.entries(path)
   entries -= ['.']
   entries -= ['..']
@@ -306,7 +314,7 @@ def dirt_sample(name, index = 0)
 end
 
 def dirt_samples(name)
-  path = File.expand_path(@@dirt_dir + '/' + name) + '/'
+  path = File.expand_path(get_dirt_dir + '/' + name) + '/'
   entries = Dir.entries(path)
   entries -= ['.']
   entries -= ['..']
