@@ -5,7 +5,7 @@
 
 _**Petal**_ is a small language on [Sonic Pi](http://sonic-pi.net/) with similar syntax to [TidalCycles](https://tidalcycles.org).
 
-The primal motivation of this project is creating a language suitable for our _telecoding_ live performance of [space-moere](http://space-moere.org/) at [SIAF2017](http://siaf.jp/en/).
+The primal motivation of this project is creating a language suitable for our _telecoding_ live performance of [space-moere](https://space-moere.org/) at [SIAF2017](https://siaf.jp/2017/).
 
 ## Requirements
 
