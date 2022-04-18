@@ -280,7 +280,7 @@ def hush
 end
 
 def solo(loop_name, sound = nil, **option_hash)
-  dirt_solo loop_name, sound, option_hash
+  dirt_solo loop_name, sound, **option_hash
 end
 
 def use_fx_with_petal(use = true)
