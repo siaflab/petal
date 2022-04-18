@@ -168,7 +168,7 @@ module PetalLang
         next if s == loop_name
         dirt_stop(s)
       end
-      dirt loop_name, sound, option_hash
+      dirt loop_name, sound, **option_hash
     end
 
     def dirt(loop_name, sound = nil, **option_hash)
@@ -240,39 +240,39 @@ def bpm(beat_per_min)
 end
 
 def d1(sound = nil, **option_hash)
-  dirt :d1, sound, option_hash
+  dirt :d1, sound, **option_hash
 end
 
 def d2(sound = nil, **option_hash)
-  dirt :d2, sound, option_hash
+  dirt :d2, sound, **option_hash
 end
 
 def d3(sound = nil, **option_hash)
-  dirt :d3, sound, option_hash
+  dirt :d3, sound, **option_hash
 end
 
 def d4(sound = nil, **option_hash)
-  dirt :d4, sound, option_hash
+  dirt :d4, sound, **option_hash
 end
 
 def d5(sound = nil, **option_hash)
-  dirt :d5, sound, option_hash
+  dirt :d5, sound, **option_hash
 end
 
 def d6(sound = nil, **option_hash)
-  dirt :d6, sound, option_hash
+  dirt :d6, sound, **option_hash
 end
 
 def d7(sound = nil, **option_hash)
-  dirt :d7, sound, option_hash
+  dirt :d7, sound, **option_hash
 end
 
 def d8(sound = nil, **option_hash)
-  dirt :d8, sound, option_hash
+  dirt :d8, sound, **option_hash
 end
 
 def d9(sound = nil, **option_hash)
-  dirt :d9, sound, option_hash
+  dirt :d9, sound, **option_hash
 end
 
 def hush
