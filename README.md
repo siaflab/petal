@@ -115,7 +115,7 @@ end
 
 See https://github.com/kn1kn1/algorave.tokyo_2018-aug-19 for more code.
 
-#### Some code from our live performance of [space-moere](http://space-moere.org/).
+#### Some code from our live performance of [space-moere](https://space-moere.org/).
 
 space-moere #0 - Balloon
 
